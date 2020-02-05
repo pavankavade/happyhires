@@ -6,6 +6,7 @@ import PostItem from "./PostItem";
 import PostForm from "./PostForm";
 import { getPosts } from "../../actions/post";
 import { getCurrentProfile } from "../../actions/profile";
+import FileUpload from "./upload/FileUpload";
 
 const Posts = ({
   getPosts,
@@ -23,13 +24,14 @@ const Posts = ({
   let postform;
 
   if (profile !== null) {
-    postform = profile.isWorker ? <PostForm /> : null;
+    postform = profile.isWorker ? null : <PostForm />;
   }
 
   return loading ? (
     <Spinner />
   ) : (
     <Fragment>
+      <FileUpload />
       <h1 className="large text-primary">Posts</h1>
       <p className="lead">
         <i className="fas fa-user" /> Welcome to the community
