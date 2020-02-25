@@ -53,9 +53,7 @@ const FileUpload = () => {
     }
   };
 
-  const worker = createWorker({
-    logger: m => console.log(m)
-  });
+  const worker = createWorker();
   const doOCR = async () => {
     await worker.load();
     await worker.loadLanguage("hin");
