@@ -7,6 +7,7 @@ import PostForm from "./PostForm";
 import { getPosts } from "../../actions/post";
 import { getCurrentProfile } from "../../actions/profile";
 import FileUpload from "./upload/FileUpload";
+import Upload from "./upload/Upload";
 
 const Posts = ({
   getPosts,
@@ -32,6 +33,7 @@ const Posts = ({
   ) : (
     <Fragment>
       <FileUpload />
+
       <h1 className="large text-primary">Posts</h1>
       <p className="lead">
         <i className="fas fa-user" /> Welcome to the community

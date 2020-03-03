@@ -6,6 +6,23 @@ import Progress from "./Progress";
 import axios from "axios";
 
 const FileUpload = () => {
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const uploadImage = e => {
+    const files = e.target.files[0];
+    const formData = new FormData();
+    formData.append("upload_preset", "happyhires");
+    formData.append("file", files);
+    setLoading(true);
+
+    axios
+      .post("https://api.cloudinary.com/v1_1/dqe5amori/image/upload", formData)
+      .then(res => setImage(res.data.secure_url))
+      .then(setLoading(false))
+      .catch(err => console.log(err));
+  };
+
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("Choose File");
   const [uploadedFile, setUploadedFile] = useState({});
@@ -60,13 +77,14 @@ const FileUpload = () => {
     await worker.initialize("hin");
     const {
       data: { text }
-    } = await worker.recognize(uploadedFile.filePath);
+    } = await worker.recognize(image);
     setOcr(text);
   };
   const [ocr, setOcr] = useState("Upload Image To Start Recognizing Text");
   useEffect(() => {
     doOCR();
   });
+  //test
 
   return (
     <Fragment>
@@ -77,7 +95,7 @@ const FileUpload = () => {
             type="file"
             className="custom-file-input"
             id="customFile"
-            onChange={onChange}
+            onChange={uploadImage}
           />
           <label className="custom-file-label" htmlFor="customFile">
             {filename}
@@ -96,7 +114,7 @@ const FileUpload = () => {
         <div className="row mt-5">
           <div className="col-md-6 m-auto">
             <h3 className="text-center">{uploadedFile.fileName}</h3>
-            <img style={{ width: "100%" }} src={uploadedFile.filePath} alt="" />
+            <img style={{ width: "100%" }} src={image} alt="" />
           </div>
         </div>
       ) : null}
