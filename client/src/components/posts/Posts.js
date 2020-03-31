@@ -1,13 +1,12 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import PostItem from "./PostItem";
-import PostForm from "./PostForm";
+import PostForm from "./upload/PostForm";
 import { getPosts } from "../../actions/post";
 import { getCurrentProfile } from "../../actions/profile";
 import FileUpload from "./upload/FileUpload";
-import Upload from "./upload/Upload";
 
 const Posts = ({
   getPosts,
@@ -22,8 +21,27 @@ const Posts = ({
     getCurrentProfile();
   }, [getCurrentProfile]);
 
-  let postform;
+  const [formData, setFormData] = useState({ search: "", select: "" });
 
+  const onChange = e =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const { search, select } = formData;
+  let postform;
+  let postitem;
+
+  postitem = posts.map(post => {
+    if (select == "text") {
+      if (post.text.toLowerCase().includes(search)) {
+        return <PostItem key={post._id} post={post} />;
+      }
+    }
+    if (select == "") {
+      if (post.text.toLowerCase().includes(search)) {
+        return <PostItem key={post._id} post={post} />;
+      }
+    }
+  });
   if (profile !== null) {
     postform = profile.isWorker ? null : <PostForm />;
   }
@@ -32,18 +50,29 @@ const Posts = ({
     <Spinner />
   ) : (
     <Fragment>
-      <FileUpload />
-
       <h1 className="large text-primary">Posts</h1>
       <p className="lead">
         <i className="fas fa-user" /> Welcome to the community
       </p>
       {postform}
-      <div className="posts">
-        {posts.map(post => (
-          <PostItem key={post._id} post={post} />
-        ))}
-      </div>
+
+      <input
+        type="text"
+        placeholder="* Search"
+        name="search"
+        value={search}
+        onChange={e => onChange(e)}
+        required
+      />
+
+      <select name="select" value="select" onChange={e => onChange(e)}>
+        <option selected value="select">
+          Search By
+        </option>
+        <option value="text">Info</option>
+      </select>
+
+      <div className="posts">{postitem}</div>
     </Fragment>
   );
 };

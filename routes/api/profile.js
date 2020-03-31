@@ -39,6 +39,7 @@ router.post("/", [auth], async (req, res) => {
   }
 
   const {
+    name,
     company,
     website,
     location,
@@ -55,6 +56,8 @@ router.post("/", [auth], async (req, res) => {
   // Build profile object
   const profileFields = {};
   profileFields.user = req.user.id;
+  profileFields.name = req.user.name;
+  console.log(req.user.id);
   if (company) profileFields.company = company;
   if (website) profileFields.website = website;
   if (location) profileFields.location = location;
@@ -391,5 +394,24 @@ router.get("/github/:username", (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+const bio = "html";
+
+router.get("/search", (req, res) => {
+  const results = bio.filter(skill =>
+    new RegExp(`^${req.query.q}`).test(skill)
+  );
+  res.json(results);
+});
+/*
+router.get("/", async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
+    res.json(profiles);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+*/
 
 module.exports = router;
