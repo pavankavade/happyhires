@@ -14,21 +14,21 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <Link to="/profiles">Workers</Link>
+        <Link to="/profiles"> {t("happy.2")}</Link>
       </li>
       <li>
-        <Link to="/posts">Posts</Link>
+        <Link to="/posts"> {t("happy.3")}</Link>
       </li>
       <li>
         <Link to="/dashboard">
           <i className="fas fa-user" />{" "}
-          <span className="hide-sm">Dashboard</span>
+          <span className="hide-sm"> {t("happy.4")}</span>
         </Link>
       </li>
       <li>
         <a onClick={logout} href="#!">
           <i className="fas fa-sign-out-alt" />{" "}
-          <span className="hide-sm">Logout</span>
+          <span className="hide-sm"> {t("happy.5")}</span>
         </a>
       </li>
     </ul>
@@ -37,13 +37,13 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to="/profiles">Workers</Link>
+        <Link to="/profiles"> {t("happy.2")}</Link>
       </li>
       <li>
-        <Link to="/register">Register</Link>
+        <Link to="/register"> {t("signup.4")}</Link>
       </li>
       <li>
-        <Link to="/login">Login</Link>
+        <Link to="/login"> {t("sign.5")}</Link>
       </li>
     </ul>
   );
@@ -66,16 +66,16 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Languages
+          {t("happy.6")}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <button>
             {" "}
-            <a onClick={() => handleClick("en")}>English</a>
+            <a onClick={() => handleClick("en")}> {t("happy.7")}</a>
           </button>
 
           <button>
-            <a onClick={() => handleClick("hin")}>Marathi</a>
+            <a onClick={() => handleClick("hin")}> {t("happy.8")}</a>
           </button>
         </div>
       </div>

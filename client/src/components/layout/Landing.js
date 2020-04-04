@@ -1,11 +1,11 @@
 import React from "react";
 
-import { useTranslation } from "react-i18next";
-import i18next from "i18next";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 const Landing = ({ isAuthenticated }) => {
   const { t } = useTranslation();
   function handleClick(lang) {
@@ -18,14 +18,9 @@ const Landing = ({ isAuthenticated }) => {
     <section className="landing">
       <div className="dark-overlay">
         <div className="landing-inner">
-          <h1 className="x-large">
-            {t("happy.1")} <p></p>
-          </h1>
+          <h1 className="x-large">{t("happy.1")}</h1>
 
-          <p className="lead">
-            Create a Worker/Company profile/portfolio, Find fitting jobs for
-            your profession or find workers for your company
-          </p>
+          <p className="lead">{t("create.1")}</p>
           <div className="buttons">
             <Link to="/register" className="btn btn-primary">
               Sign Up

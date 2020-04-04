@@ -1,5 +1,32 @@
 {
   "happy": {
-    "1": "HappyHires"
+    "1": "HappyHires",
+    "2": "Workers",
+    "3": "Posts",
+    "4": "Dashboard",
+    "5": "Logout",
+    "6": "Languages",
+    "7": "English",
+    "8": "Marathi"
+  },
+  "create": {
+    "1": " Create a Worker/Company profile/portfolio, Find fitting jobs for your profession or find workers for your company"
+  },
+  "sign": {
+    "1": "Sign In",
+    "2": "Sign Into Your Account",
+    "3": "Sign Up",
+    "4": " Don't have an account?",
+    "5": "Login"
+  },
+  "signup": {
+    "1": "Create Your Account",
+    "2": "This site uses Gravatar so if you want a profile image, use a Gravatar email",
+    "3": " Already have an account?",
+    "4": "Register",
+    "5": "Name",
+    "6": "Email Address",
+    "7": "Password",
+    "8": "Confirm Password"
   }
 }
