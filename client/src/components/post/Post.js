@@ -9,6 +9,9 @@ import CommentItem from "../post/CommentItem";
 import { getPost } from "../../actions/post";
 import { getCurrentProfile } from "../../actions/profile";
 
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
+
 const Post = ({
   getPost,
   post: { post, loading },
@@ -23,16 +26,21 @@ const Post = ({
     getCurrentProfile();
   }, [getCurrentProfile]);
   let comments;
-
+  function handleClick(lang) {
+    i18next.changeLanguage(lang);
+  }
+  const { t } = useTranslation();
   return loading || post === null ? (
     <Spinner />
   ) : (
     <Fragment>
       <Link to="/posts" className="btn">
-        Back To Posts
+        {t("post.1")}
       </Link>
       <PostItem post={post} showActions={false} />
+      <h3>{t("post.3")}</h3>
       <CommentForm postId={post._id} />
+
       <div className="comments">
         {profile.isWorker
           ? null

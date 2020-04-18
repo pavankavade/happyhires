@@ -28,5 +28,69 @@
     "6": "Email Address",
     "7": "Password",
     "8": "Confirm Password"
+  },
+
+  "dash": {
+    "1": "Dashboard",
+    "2": "Welcome",
+    "3": " Delete My Account",
+    "4": "You have not yet setup a profile, please add some info",
+    "5": "Create Worker Profile",
+    "6": "Create Company Profile",
+    "7": "Edit Profile",
+    "8": "Add Experience",
+    "9": "Add Education",
+    "10": "Experience Credentials",
+    "11": "Company",
+    "12": "Title",
+    "13": "Years",
+    "14": "Education Credentials",
+    "15": "Degree",
+    "16": "Years",
+    "17": "Delete"
+  },
+  "post": {
+    "1": " Go Back",
+    "2": "Posted on ",
+    "3": "Apply for Job",
+    "4": " Posted on   ",
+    "5": "Apply ",
+    "6": "Posts",
+    "7": "Welcome to the community",
+    "8": "* Search",
+    "9": "Search By ",
+    "10": "Info ",
+    "": "",
+    "": "",
+    "": "",
+    "": ""
+  },
+
+  "prof": {
+    "1": "Back To Profiles",
+    "2": "Experience",
+    "3": "No experience credentials",
+    "4": "Education",
+    "5": "No education credentials",
+    "6": "Add Your Education ",
+    "7": "Add any school or bootcamp that youhave attended",
+    "8": "* = required field",
+    "9": "Current School",
+    "10": "From Date",
+    "11": "To Date ",
+    "12": "Add An Experience",
+    "13": "Add any developer/programming positions that you have had in the past",
+    "14": "Current Job"
+  },
+
+  "profi": {
+    "1": "View Profile",
+    "2": "No profiles found... ",
+    "3": "Workers",
+    "4": "Browse and connect with  Workers",
+    "5": "Search By ",
+    "6": "Bio ",
+    "7": "Location ",
+    "8": "Skill"
   }
 }

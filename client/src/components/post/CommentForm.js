@@ -8,9 +8,7 @@ const CommentForm = ({ postId, addComment }) => {
 
   return (
     <div className="post-form">
-      <div className="bg-primary p">
-        <h3>Apply for Job</h3>
-      </div>
+      <div className="bg-primary p"></div>
       <form
         className="form my-1"
         onSubmit={(e) => {

@@ -8,11 +8,13 @@ import { getPosts } from "../../actions/post";
 import { getCurrentProfile } from "../../actions/profile";
 import FileUpload from "./upload/FileUpload";
 
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 const Posts = ({
   getPosts,
   post: { posts, loading },
   profile: { profile },
-  getCurrentProfile
+  getCurrentProfile,
 }) => {
   useEffect(() => {
     getPosts();
@@ -20,17 +22,20 @@ const Posts = ({
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
-
+  function handleClick(lang) {
+    i18next.changeLanguage(lang);
+  }
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({ search: "", select: "" });
 
-  const onChange = e =>
+  const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const { search, select } = formData;
   let postform;
   let postitem;
 
-  postitem = posts.map(post => {
+  postitem = posts.map((post) => {
     if (select == "text") {
       if (post.text.toLowerCase().includes(search)) {
         return <PostItem key={post._id} post={post} />;
@@ -50,27 +55,49 @@ const Posts = ({
     <Spinner />
   ) : (
     <Fragment>
-      <h1 className="large text-primary">Posts</h1>
+      <h1 className="large text-primary"> {t("post.6")}</h1>
       <p className="lead">
-        <i className="fas fa-user" /> Welcome to the community
+        <i className="fas fa-user" /> {t("post.7")}
       </p>
       {postform}
-
-      <input
-        type="text"
-        placeholder="* Search"
-        name="search"
-        value={search}
-        onChange={e => onChange(e)}
-        required
-      />
-
-      <select name="select" value="select" onChange={e => onChange(e)}>
-        <option selected value="select">
-          Search By
-        </option>
-        <option value="text">Info</option>
-      </select>
+      <div class="s01">
+        <form>
+          <div class="inner-form">
+            <div class="input-field first-wrap">
+              <input
+                type="text"
+                placeholder={t("post.8")}
+                name="search"
+                value={search}
+                id="search"
+                onChange={(e) => onChange(e)}
+                required
+              />
+            </div>
+            <div class="input-field second-wrap">
+              <select
+                className="browser-default custom-select"
+                id="search"
+                name="select"
+                value="select"
+                onChange={(e) => onChange(e)}
+              >
+                <option selected value="select">
+                  {t("post.9")}
+                </option>
+                <option id="search" value="text">
+                  Info {t("post.10")}
+                </option>
+              </select>{" "}
+            </div>
+            <div class="input-field third-wrap">
+              <button class="btn-search" type="button">
+                Search
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
 
       <div className="posts">{postitem}</div>
     </Fragment>
@@ -81,12 +108,12 @@ Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired
+  getCurrentProfile: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   post: state.post,
-  profile: state.profile
+  profile: state.profile,
 });
 
 export default connect(mapStateToProps, { getPosts, getCurrentProfile })(Posts);

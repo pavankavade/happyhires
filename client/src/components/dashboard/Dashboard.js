@@ -10,19 +10,25 @@ import { getCurrentProfile, deleteAccount } from "../../actions/profile";
 import PostItem from "../posts/PostItem";
 import { getPosts } from "../../actions/post";
 
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 const Dashboard = ({
   getCurrentProfile,
   deleteAccount,
   auth: { user },
   post: { posts, loading1 },
-  profile: { profile, loading }
+  profile: { profile, loading },
 }) => {
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
   let postitems;
+  function handleClick(lang) {
+    i18next.changeLanguage(lang);
+  }
+  const { t } = useTranslation();
   if (profile != null) {
-    postitems = posts.map(post => {
+    postitems = posts.map((post) => {
       if (post.text.toLowerCase().includes(profile.skills)) {
         return <PostItem key={post._id} post={post} />;
       }
@@ -32,9 +38,9 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <Fragment>
-      <h1 className="large text-primary">Dashboard</h1>
+      <h1 className="large text-primary"> {t("dash.1")}</h1>
       <p className="lead">
-        <i className="fas fa-user" /> Welcome {user && user.name}
+        <i className="fas fa-user" /> {t("dash.2")} {user && user.name}
       </p>
       {profile !== null ? (
         <Fragment>
@@ -44,18 +50,18 @@ const Dashboard = ({
           <div className="posts">{postitems}</div>
           <div className="my-2">
             <button className="btn btn-danger" onClick={() => deleteAccount()}>
-              <i className="fas fa-user-minus" /> Delete My Account
+              <i className="fas fa-user-minus" /> {t("dash.3")}
             </button>
           </div>
         </Fragment>
       ) : (
         <Fragment>
-          <p>You have not yet setup a profile, please add some info</p>
+          <p>{t("dash.4")}</p>
           <Link to="/create-profile" className="btn btn-primary my-1">
-            Create Worker Profile
+            {t("dash.5")}
           </Link>
           <Link to="/create-company-profile" className="btn btn-primary my-1">
-            Create Company Profile
+            {t("dash.6")}
           </Link>
         </Fragment>
       )}
@@ -69,17 +75,17 @@ Dashboard.propTypes = {
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   getPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   post: state.post,
   auth: state.auth,
-  profile: state.profile
+  profile: state.profile,
 });
 
 export default connect(mapStateToProps, {
   getPosts,
   getCurrentProfile,
-  deleteAccount
+  deleteAccount,
 })(Dashboard);
