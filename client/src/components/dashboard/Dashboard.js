@@ -27,9 +27,9 @@ const Dashboard = ({
     i18next.changeLanguage(lang);
   }
   const { t } = useTranslation();
-  if (profile != null) {
+  if (posts != null) {
     postitems = posts.map((post) => {
-      if (post.text.toLowerCase().includes(profile.skills)) {
+      if (post.text.toLowerCase().includes(profile.skills).toString()) {
         return <PostItem key={post._id} post={post} />;
       }
     });
@@ -47,6 +47,7 @@ const Dashboard = ({
           <DashboardActions />
           <Experience experience={profile.experience} />
           <Education education={profile.education} />
+          <h2>Suggested Jobs</h2>
           <div className="posts">{postitems}</div>
           <div className="my-2">
             <button className="btn btn-danger" onClick={() => deleteAccount()}>
