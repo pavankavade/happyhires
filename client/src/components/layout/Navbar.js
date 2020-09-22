@@ -45,6 +45,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <li>
         <Link to="/login"> {t("sign.5")}</Link>
       </li>
+      <li></li>
     </ul>
   );
 
@@ -53,18 +54,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <h1>
         <Link to="/">{t("happy.1")}</Link>
       </h1>
+
+      {!loading && (
+        <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+      )}
+
       <div class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          {t("happy.6")}
-        </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <button>
             {" "}
@@ -75,11 +70,18 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             <a onClick={() => handleClick("hin")}> {t("happy.8")}</a>
           </button>
         </div>
+        <a
+          class="nav-link dropdown-toggle "
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          {t("happy.6")}
+        </a>
       </div>
-
-      {!loading && (
-        <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
-      )}
     </nav>
   );
 };
