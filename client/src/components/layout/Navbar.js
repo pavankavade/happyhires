@@ -73,6 +73,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           <button>
             <a onClick={() => handleClick("kan")}> {t("happy.9")}</a>
           </button>
+          <button>
+            <a onClick={() => handleClick("guj")}> {t("happy.10")}</a>
+          </button>    
+          <button>
+            <a onClick={() => handleClick("tel")}> {t("happy.11")}</a>
+          </button>                                          
         </div>
         <a
           class="nav-link dropdown-toggle "
